@@ -1,0 +1,54 @@
+@model UserManagement.ViewModel.UserCreateViewModel
+@{
+    ViewData["Title"] = "Register Page";
+}
+
+<div class="container">
+    <h1>Register User</h1>
+    <form class="m-2" asp-action="create" asp-controller="user" method="post" enctype="multipart/form-data">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="Name"></label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="Name">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="Email"></label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="Email">
+                <span class="text-danger" asp-validation-for="Email"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="Department"></label>
+            <div class="col-sm-10">
+                <select class="form-control" asp-for="Department"
+                    asp-items="Html.GetEnumSelectList<Dep>()"></select>
+                <span class="text-danger" asp-validation-for="Department"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label" asp-for="Photo"></label>
+            <div class="col-sm-10">
+                <div class="custom-file">
+                    <input class="form-control custom-file-input" asp-for="Photo">
+                    <label class="custom-file-label">Choose file...</label>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+</div>
+
+@section Script
+{
+    <script>
+        $(document).ready(function(){
+            $('.custom-file-input').on("change", function(){
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next(".custom-file-label").html(fileName);
+            })
+        })
+    </script>
+}

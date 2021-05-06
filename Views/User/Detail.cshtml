@@ -1,0 +1,33 @@
+@model User
+@{
+    var filePath = "~/images/" + Model.PhotoPath;
+    if (Model.PhotoPath == null)
+    {
+        filePath = "~/images/user.png";
+    }
+
+    ViewData["Title"] = "Detail Page";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-8">
+            <div class="card">
+                <h5 class="card-header">@Model.Name</h5>
+                <div class="card-body text-center">
+                    <img src="@filePath" class="card-img-top imageThumnail" alt="@filePath" asp-append-version="true">
+
+                    <h4>User ID: @Model.UserID</h4>
+                    <h4>Name: @Model.Name</h4>
+                    <h4>Email: @Model.Email</h4>
+                    <h4>Department: @Model.Department</h4>
+                </div>
+                <div class="card-footer text-center">
+                    <a asp-action="index" asp-controller="user" class="btn btn-primary">Back</a>
+                    <a asp-action="update" asp-controller="user" asp-route-id="@Model.UserID" class="btn btn-primary">Update</a>
+                    <a asp-action="delete" asp-controller="user" asp-route-id="@Model.UserID" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

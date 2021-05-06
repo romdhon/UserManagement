@@ -1,0 +1,31 @@
+@model IEnumerable<User>
+@{
+    ViewData["Title"] = "List Page";
+}
+
+<div class="row justify-content-center">
+    @foreach (var user in Model)
+    {
+
+        var filePath = "~/images/" + user.PhotoPath;
+        if (user.PhotoPath == null)
+        {
+            filePath = "~/images/user.png";
+        }
+
+        <div class="col-sm-3 mb-2">
+            <div class="card">
+                <h5 class="card-header">@user.Name</h5>
+                <img src="@filePath" class="imageThumnail" asp-append-version="true">
+                <div class="card-footer text-center">
+                    <a asp-action="detail" asp-controller="user" asp-route-id="@user.UserID"
+                        class="btn btn-primary m-1">Detail</a>
+                    <a asp-controller="user" asp-action="update" asp-route-id="@user.UserID" class="btn btn-primary m-1">Update</a>
+                    <a asp-action="delete" asp-controller="user" asp-route-id="@user.UserID" 
+                        class="btn btn-danger m-1">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

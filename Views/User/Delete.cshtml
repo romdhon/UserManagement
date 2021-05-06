@@ -1,0 +1,23 @@
+@model User
+@{
+    ViewData["Title"] = "Delete Page";
+    Layout = "~/Views/Shared/_otherLayout.cshtml";
+}
+
+<div class="container">
+    <form method="post" asp-controller="user" asp-action="delete" class="mt-5">
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-danger">Warning!!</h5>
+                        <hr>
+                        <p class="card-text">Are you sure to delete @Model.Name?</p>
+                        <button type="submit" class="btn btn-danger">Yes</button>
+                        <a asp-action="index" asp-controller="user" class="btn btn-success">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
